@@ -1,0 +1,91 @@
+body, canvas-holder {
+    padding: 0;
+    margin: 0;
+    background-color: #080808
+}
+p {
+    margin: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.highlight {
+    font-weight: bold;
+    color: 
+}
+
+#infobox {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #fefefe;
+    width: 250px;
+    padding:15px;
+    font-family: 'Patrick Hand', 'arial', 'sans-serif';
+    font-size: 13pt;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+}
+
+.infobox-copyright {
+    line-height: 30px;
+}
+
+/* Button to control the information box */
+#button-open {
+    z-index: 1;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    text-decoration: none;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: arial;
+    width: 35px;
+    text-align: center;
+    color: white;
+    background-color: #080808;
+}
+
+#button-open:hover,
+#button-open:focus {
+    color: #080808;
+    background-color: white;
+}
+
+#button-close {
+    text-align: center;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    width: 35px;
+    height: 30px;
+    padding-bottom: 5px;
+    font-family: arial;
+}
+
+#button-close:hover,
+#button-close:focus {
+    background: black;
+    color:white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animations */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
