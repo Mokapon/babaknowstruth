@@ -1,12 +1,12 @@
 let TILE_WIDTH = 24;
 
-let backColor = '#080808'
-let accentColor = '#de396b'
-let colors = [ '#efe784', '#e75239', '#8c5a9c', '#5a9cd6' ]
+let backColor = '#080808';
+let accentColor = '#de396b';
+let colors = [ '#efe784', '#e75239', '#8c5a9c', '#5a9cd6' ];
 
-let words = ['baba', 'you', 'love', 'all', 'life', 'cute']
-let verbs = ['is', 'make', 'eat', 'heart']
-let decor = ['dust', 'star']
+let nouns = ['all', 'baba', 'cute', 'fruit', 'ghost', 'keke', 'life', 'love', 'metal', 'poof', 'win', 'w_star', 'you' ];
+let verbs = ['is', 'make', 'eat', 'heart', 'follow'];
+let decor = ['dust', 'star'];
 
 let images = [];
 
@@ -16,7 +16,7 @@ let sparkles = [];
 let w, h, truthCol=1, truthRow=1, scale=1;
 
 function preload() {
-    for (let word of concat(decor, concat(words, verbs))) {
+    for (let word of concat(decor, concat(nouns, verbs))) {
         images[word] = [];
         images[word].push(loadImage('img/'+word+'1.png'));
         images[word].push(loadImage('img/'+word+'2.png'));
@@ -99,7 +99,7 @@ function windowResized() {
     }
   }
 
-  // words
+  // pick words if necessary
   if (!truth || truth.length==0) {
     pickTruth(truthCol, truthRow);
   } else {
@@ -114,9 +114,9 @@ function windowResized() {
 
 function pickTruth(col, row) {
   truth = [];
-  truth.push(new Sprite(col, row, accentColor, images[random(words)]));
   truth.push(new Sprite(col+1, row, '#fff', images[random(verbs)]));
-  truth.push(new Sprite(col+2, row, accentColor, images[random(words)]));
+  truth.push(new Sprite(col, row, accentColor, images[random(nouns)]));
+  truth.push(new Sprite(col+2, row, accentColor, images[random(nouns)]));
 }
 
 function draw() {
