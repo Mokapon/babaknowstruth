@@ -1,4 +1,5 @@
 let TILE_WIDTH = 24;
+let IS_CHANCE = 0.3;
 
 let backColor = '#080808';
 let accentColor = '#de396b';
@@ -114,8 +115,12 @@ function windowResized() {
 
 function pickTruth(col, row) {
   truth = [];
-  truth.push(new Sprite(col+1, row, '#fff', images[random(verbs)]));
   truth.push(new Sprite(col, row, accentColor, images[random(nouns)]));
+  let verb = 'is';
+  if (random() > IS_CHANCE) {
+    verb = random(verbs);
+  }
+  truth.push(new Sprite(col+1, row, '#fff', images[verb]));
   truth.push(new Sprite(col+2, row, accentColor, images[random(nouns)]));
 }
 
