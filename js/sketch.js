@@ -28,17 +28,22 @@ let sparkles = [];
 let scale=1;
 let truthCol=1, truthRow=1;
 
+/* Gif recording */
+let canvas;
+let recording;
+let gif;
+
 function preload() {
-    for (let word of concat(connectors, concat(negation, concat(decor, concat(nouns, verbs))))) {
-        images[word] = [];
-        images[word].push(loadImage('img/'+word+'1.png'));
-        images[word].push(loadImage('img/'+word+'2.png'));
-    }
+  for (let word of concat(connectors, concat(negation, concat(decor, concat(nouns, verbs))))) {
+    images[word] = [];
+    images[word].push(loadImage('img/'+word+'1.png'));
+    images[word].push(loadImage('img/'+word+'2.png'));
+  }
 }
 
 function setup() {
-
-  let canvas = createCanvas(windowWidth, windowHeight - 4);
+  // create canvas
+  canvas = createCanvas(windowWidth, windowHeight - 4);
   canvas.parent('canvas-holder')
 
   // disable smoothing
@@ -67,6 +72,25 @@ function setup() {
 
   // compute location of the different elements and display
   windowResized();
+}
+
+function startRecording() {
+  let gifLink = document.getElementById('download-gif');
+  gifLink.setAttribute('disabled','');
+  gif = new GIF({
+    workers:2,
+    quality:40,
+    workerScript:'lib/gif.worker.js'
+  });
+  
+  gif.addFrame(canvas.elt, {copy: true});
+  
+  gif.on('finished', function(blob) {
+    gifLink.href = URL.createObjectURL(blob);
+    gifLink.removeAttribute('disabled');
+  });
+
+  recording = true;
 }
 
 function windowResized() {
@@ -117,6 +141,9 @@ function setCanvasSize(w,h) {
   }
 
   drawTruth();
+
+  //prepare the gif for download
+  startRecording();
 }
 
 function createDecorElements(numCols, numRows) {
@@ -128,10 +155,10 @@ function createDecorElements(numCols, numRows) {
     while (col >=truthCol-1 && col <= truthCol+truth.length &&
       row >=truthRow-1 && row <= truthRow+1) {
       col = floor(random(numCols));
-      row = floor(random(numRows))
-    }
-    sparkles.push(new Sprite(random(decorColors), images[random(decor)],col,row));
+    row = floor(random(numRows))
   }
+  sparkles.push(new Sprite(random(decorColors), images[random(decor)],col,row));
+}
 }
 
 function pickTruth(maxLength) {
@@ -178,6 +205,14 @@ function draw() {
       sprite.tick();
     }
     drawTruth();
+
+    if (recording) {
+      gif.addFrame(canvas.elt, {copy: true});
+      if (gif.frames.length===2) {
+        recording = false;
+        gif.render();
+      }
+    }
   }
 }
 

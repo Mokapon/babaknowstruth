@@ -37,27 +37,47 @@ p {
     line-height: 30px;
 }
 
-/* Button to control the information box */
-#button-open {
+.buttons-container {
     z-index: 1;
     position: fixed;
     bottom: 15px;
     right: 15px;
+}
+
+/* Button to control the information box */
+.button-black {
     text-decoration: none;
+    cursor: pointer;
     border: none;
     font-size: 30px;
     font-weight: bold;
     font-family: arial;
-    width: 35px;
+    width: 37px;
     text-align: center;
     color: white;
     background-color: #080808;
 }
 
-#button-open:hover,
-#button-open:focus {
+.button-black:hover,
+.button-black:focus {
     color: #080808;
     background-color: white;
+}
+
+.button-black:disabled:hover,
+.button-black[disabled]:hover {
+    cursor: default;
+    background-color: #080808;
+}
+
+.button-black:disabled,
+.button-black[disabled] {
+    cursor: default;
+    color: grey;
+}
+
+#button-gif {
+    font-size: 23px;
 }
 
 #button-close {
@@ -67,6 +87,7 @@ p {
     font-weight: bold;
     width: 35px;
     height: 30px;
+    margin-top: 5px;
     padding-bottom: 5px;
     font-family: arial;
 }

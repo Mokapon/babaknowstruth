@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="baba.css">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
 
-    <script src="js/p5.min.js"></script>
+    <script src="lib/gif.js"></script>
+    <script src="lib/p5.min.js"></script>
     <script src="js/sprite.js"></script>
     <script src="js/sketch.js"></script>
   </head>
@@ -17,7 +18,11 @@
     <!-- P5 JS Canvas will go here -->
     <div id="canvas-holder"></div>
 
-    <button id="button-open" class="button-round" title="help">?</button>
+    <div class="buttons-container">
+      <a id="download-gif" download="babaknowstruth.gif" class="button-black" title="Save as GIF" disabled>⬇</a>
+      <button id="button-open" class="button-black" title="Help">?</button>
+    </div>
+    
     
     <div id="infobox">
       <div class="text-center">
@@ -38,8 +43,10 @@
       </ul>
 
       <div class="infobox-footer">
-        <span class="infobox-copyright">© Mokapon 2018 - made with <a href="http://p5js.org/">p5.js</a></span>
         <span id="button-close">&times;</span>
+        <p>© Mokapon 2018</p>
+        <p>Made using <a href="http://p5js.org/" target="_blank">p5.js</a> and <a  target="_blank" href=https://github.com/jnordberg">gif.js</a></p>
+        
       </div>
 
     </div>
